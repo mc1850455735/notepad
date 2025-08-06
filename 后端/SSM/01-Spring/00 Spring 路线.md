@@ -1,0 +1,11 @@
+
+- 简化开发
+	- IoC
+	- AOP
+		- 事务处理
+- 框架整理
+	- MyBatis
+	- MyBatisPlus
+	- Struts
+	- Struts2
+	- Hibernate

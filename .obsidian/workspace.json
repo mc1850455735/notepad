@@ -1,0 +1,160 @@
+{
+  "main": {
+    "id": "a9647ffe2b69d374",
+    "type": "split",
+    "children": [
+      {
+        "id": "6b8abe8fdb5cf6ed",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fc21c69526230b07",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "后端/SSM/02-SpringMVC/05 拦截器.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5eed8d5651c0a4e9",
+    "type": "split",
+    "children": [
+      {
+        "id": "95b8901f53c50fb5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f40ded9ab7dbc011",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f10dbaf455b2589d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "504b78fd66da870a",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "9a2eacbccacb048f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "6edf8ca6c8ba7c30",
+    "type": "split",
+    "children": [
+      {
+        "id": "0a7d996f7ada00c0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a09f5060afcc007e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "后端/SSM/02-SpringMVC/05 拦截器.md"
+              }
+            }
+          },
+          {
+            "id": "02e20cb5b98526a6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "alphabeticalReverse",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "215fb7c11d4a8f25",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "后端/SSM/02-SpringMVC/05 拦截器.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9610d06b4b0050c5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "后端/SSM/02-SpringMVC/05 拦截器.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 216.5
+  },
+  "active": "215fb7c11d4a8f25",
+  "lastOpenFiles": [
+    "后端/SSM/02-SpringMVC/04 SSM整合.md",
+    "后端/SSM/02-SpringMVC/02 请求与响应.md",
+    "后端/SSM/02-SpringMVC/03 REST风格.md",
+    "后端/SSM/02-SpringMVC/05 拦截器.md",
+    "后端/JavaWeb/10 JSP.md",
+    "后端/SSM/02-SpringMVC/01 SpringMVC概述.md",
+    "后端/JavaWeb/99 验证码.md",
+    "后端/JavaWeb/14 Vue & Element.md",
+    "后端/JavaWeb/13 Ajax.md",
+    "后端/JavaWeb/12 Filter & Listener.md"
+  ]
+}

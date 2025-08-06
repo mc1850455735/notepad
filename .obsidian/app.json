@@ -1,0 +1,13 @@
+{
+  "promptDelete": false,
+  "showLineNumber": true,
+  "spellcheck": true,
+  "trashOption": "local",
+  "newFileLocation": "current",
+  "newFileFolderPath": "Inbox",
+  "attachmentFolderPath": "./Inbox",
+  "newLinkFormat": "absolute",
+  "alwaysUpdateLinks": true,
+  "autoPairMarkdown": true,
+  "tabSize": 2
+}
