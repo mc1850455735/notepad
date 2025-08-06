@@ -23,8 +23,8 @@
     <artifactId>javax.servlet-api</artifactId>  
     <version>3.1.0</version>  
     <scope>provided</scope>  
-</dependency>  
-<dependency>  
+</dependency>
+<dependency>
     <groupId>org.springframework</groupId>  
     <artifactId>spring-webmvc</artifactId>  
     <version>5.2.10.RELEASE</version>  
