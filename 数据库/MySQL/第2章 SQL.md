@@ -88,7 +88,7 @@ CREATE TABLE 表名(
 ```
 
 **示例**
-```sql
+```mysql
 CREATE TABLE emp(
     id int comment '编号',
     workno varchar(10) comment '工号',
@@ -206,7 +206,7 @@ TRUNCATE TABLE 表名;
 INSERT INTO 表名 (字段名1, 字段名2) VALUES (值1, 值2);
 ```
 - 示例
-```sql
+```mysql
 INSERT INTO emp(id, workno, `name`, gender, age, idcard, entrydate) 
 VALUES (1, '1', 'itcast', '男', 10, '101010200101012010', '2020-01-01');
 ```
@@ -218,7 +218,7 @@ VALUES (1, '1', 'itcast', '男', 10, '101010200101012010', '2020-01-01');
 INSERT INTO 表名 VALUES (值1, 值2, ...)
 ```
 - 示例
-```sql
+```mysql
 INSERT INTO emp
 VALUES (2, '2', 'majinliang', '男', 18, '371122200301012121', '2021-08-01');
 ```
@@ -233,7 +233,7 @@ INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...), (值1
 INSERT INTO 表名 VALUES (值1, 值2, ...), (值1, 值2, ...);
 ```
 - 示例
-```sql
+```mysql
 INSERT INTO emp VALUES 
 (3, '3', '韦一敏', '男', 18, '371122200301012121', '2021-08-01'),
 (4, '4', '曾小贤', '女', 18, '379900200401012121', '2021-05-01');
@@ -429,7 +429,7 @@ SELECT 字段列表 FROM 表名 [WHERE 条件] GROUP BY 分组字段名 [HAVING 
 - sql中, 支持多字段排序, 排序时要同时指定字段名和排序方式
 - 先按照第一个字段进行排序, **若相同**, 则按第二个字段排序, 依此类推
 
-```sql
+```mysql
 SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方式1, 字段2 排序方式2;
 ```
 
@@ -443,7 +443,7 @@ SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方式1, 字段2 排序�
 ### 分页查询
 
 - MySQL中的分页, 实际上就是从第x+1条记录开始, 向后显示y条数据
-```sql
+```mysql
 SELECT 字段列表 FROM 表名 LIMIT 起始索引x, 查询记录数y;
 ```
 
@@ -478,7 +478,7 @@ SELECT 字段列表 FROM 表名 LIMIT 起始索引x, 查询记录数y;
 ### 管理用户
 
 **查询用户**
-```sql
+```mysql
 USE mysql;
 SELECT * FROM user;
 ```
@@ -496,7 +496,7 @@ ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql_native_password BY '新
 ```
 
 **删除用户**
-```sql
+```mysql
 DROP USER '用户名'@'主机名';
 ```
 
