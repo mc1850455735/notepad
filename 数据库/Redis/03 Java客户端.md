@@ -231,6 +231,7 @@ void testSaveUser() {
 - Spring默认提供了一个StringRedisTemplate类, 它的key和value的序列化方法默认就是String方式
 - 通过这种方式, 省去了定义RedisTemplate的过程
 ```java
+private static final ObjectMapper mapper = new ObjectMapper();
 @Test  
 void testSaveUser() throws JsonProcessingException {  
     // 创建对象  
