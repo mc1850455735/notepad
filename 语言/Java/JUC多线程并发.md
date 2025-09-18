@@ -424,4 +424,108 @@ public class Consumer extends Thread {
 ```
 
 ### 线程的状态
+- Java共有七大状态 (实际上没有运行态, 因为运行态的线程虚拟机交由操作系统管理)
+- New : 新建而至今尚未启动过
+- Runnable : 正在Java虚拟机中执行
+- Blocked : 受阻塞并等待某个监视器锁
+- Waiting : 无限期等待另一个线程执行某一操作
+- Timed_Waiting : 等待另一个线程执行取决于等待时间的操作
+- Terminated : 已退出
+![[语言/Java/Inbox/Pasted image 20250917215848.png]]
 
+# 线程池
+
+**普通线程模式弊端**
+- 使用创建对象的方式使用线程的弊端
+- 用到线程时, 线程才会创建
+- 用完线程时 , 直接销毁线程
+
+**线程池原理**
+- 创建一个线程池 , 初始状态下线程池为空
+- 提交任务时, 线程池会创建新的线程对象, 任务执行完毕后, 线程归还给线程池, 下次提交任务时, 直接从线程池中取线程即可
+- 如果提交任务时, 线程池中没有空闲的线程且无法创建新的线程, 则任务排队等待
+
+**代码实现**
+- Executors : 线程池的工具类, 通过调用不同方法返回不同类型的线程池对象
+	- `static ExecutorsService newCachedThreadPool()` : 创建一个没有上限的线程池 (实际上限为Int类型的最大值)
+	- `static ExecutorsService newFixedThreadPool(int nThreads)` : 创建有上限的线程池
+- 线程池中的线程默认名称为 `pool-x-thread-y`
+```java
+public class MyThreadPoolDemo {  
+    public static void main(String[] args) {  
+        // 1. 获取线程池对象  
+        ExecutorService cachedThreadPool = 
+            Executors.newCachedThreadPool();  
+        // 2. 提交任务  
+        cachedThreadPool.submit(new MyRunnable());  
+        cachedThreadPool.submit(new MyRunnable());  
+        cachedThreadPool.submit(new MyRunnable());  
+        cachedThreadPool.submit(new MyRunnable());  
+        cachedThreadPool.submit(new MyRunnable());  
+        // 3. 销毁线程池  
+        cachedThreadPool.shutdown();  
+    }  
+}
+```
+
+### 自定义线程池
+
+**参数**
+- 核心线程数量
+- 线程池中最大线程数量
+- 空闲时间值
+- 空闲时间单位
+- 线程池阻塞队列
+- 创建线程方式
+- 执行任务过多时的解决方案(拒绝策略)
+	- `ThreadPoolExecutor.AbortPolicy` : **默认策略**, 丢弃任务并抛出`RejectedExecutionException`异常
+	- `ThreadPoolExecutor.DiscardPolicy` : 丢弃任务但不抛出异常, 不推荐该方法
+	- `ThreadPoolExecutor.DiscardOldestPolicy` : 抛弃队列中等待最久的任务, 然后把当前任务加入队列中
+	- `ThreadPoolExecutor.CallerRunsPolicy` : 调用任务的run()方法绕过线程池直接执行
+
+**线程池多大合适**
+- CPU密集型计算
+	- `最大并行数 + 1`
+- I/O密集型计算
+	- `最大并行数*期望CPU利用率*(总时间(CPU计算时间+等待时间)/CPU计算时间)`
+	- 对应参数可以通过工具进行测试, 如thread dump
+- 查看Java虚拟机可用的处理器数目
+```java
+public class MyThreadDemo2 {  
+    public static void main(String[] args) {  
+        int count = Runtime.getRuntime().availableProcessors();  
+        System.out.println(count);  
+    }  
+}
+```
+
+**执行过程**
+- 当有任务时, 线程池会首先为其分配核心线程处理
+- 如果核心线程全部不空闲, 则应首先将任务加入等待队列
+- 如果等待队列已满, 则新加入任务时, 应该创建临时线程, 处理队伍中的任务
+- 如果线程数量已达到最大数量且任务队列已满, 则新来的任务会通过解决方案进行处理
+
+**代码**
+```java
+public class MyThreadDemo1 {  
+    public static void main(String[] args) {  
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(  
+                3, // 核心线程数量, 不能小于0  
+                6, // 最大线程数量, 不能小于0, 最大线程数 >= 核心线程数  
+                60, // 空闲线程最大存活时间  
+                TimeUnit.SECONDS, // 时间单位  
+                new ArrayBlockingQueue<>(3), // 阻塞队列及其长度  
+                Executors.defaultThreadFactory(), // 线程构建方式
+                new ThreadPoolExecutor.AbortPolicy() // 任务拒绝策略
+        );  
+        pool.submit(new MyRunnable());  
+        pool.submit(new MyRunnable());  
+        pool.submit(new MyRunnable());  
+        pool.shutdown();  
+    }  
+}
+```
+
+# 总结
+
+- 关于多线程的其他的, 更加具体的各类知识点, 可以参考黑马JUC文档
