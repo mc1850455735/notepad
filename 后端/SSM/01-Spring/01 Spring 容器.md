@@ -98,7 +98,7 @@
 ```
 
 2. 书写对应配置文件(XML版)
-	- 配置时不配接口, 而是配实践类
+	- 配置时不配接口, 而是配实现类
 ```xml
 <bean id="bookDao" 
 	  class="top.majinliang.dao.impl.BookDaoImpl" />  
