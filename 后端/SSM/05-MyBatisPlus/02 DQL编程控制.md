@@ -19,7 +19,7 @@ void testGetAll01(){
 ```
 
 ### Lambda格式条件查询
-- 在原`QueryWrapper`对象的基础上, 在其后面加入`.lambda`方法使其成为一个lambda查询条件
+- 在原 `QueryWrapper` 对象的基础上, 在其后面加入 `.lambda` 方法使其成为一个 lambda 查询条件
 - 使用lambda查询条件, 可以在设置条件时, 直接使用类的字段作为查询条件所在列, 避免输出错误导致条件无效
 - 对于lambda查询, 必须在`QueryWrapper`中指定其泛型, 否则会报错
 ```java
