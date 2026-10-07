@@ -61,7 +61,12 @@ MySQL 修改数据后，为了保障数据一致性，选择先删除 Redis 中�
 
 # Big Key 问题
 
-big key 就是 redis 中占用内存较多的 key。
+Redis 中的 Big Key 就是占用内存较多的 key，这种 key 的存在会造成以下问题：
+- Cluster 模式下不同的 slot 分布到不同的实例中，Big Key 映射到一个实例中，会导致分布不均，影响查询效率；
+- Redis 使用单线程操作，操作大 key 时耗时较长，会阻塞其他命令，同时会拖慢整个流程，而且可能导致客户端等待超时，同时大 Key 也会导致资源占用更多；
+
+大 key 的解决方案
+- 
 
 # Caffine 和 Redis的区别
 
