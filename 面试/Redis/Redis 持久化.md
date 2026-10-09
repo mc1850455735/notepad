@@ -68,3 +68,19 @@ Redis 4.0 + 后，支持结合了 RDB 和 AOP 优势的混合持久化，生成�
 	3. 同时存在 AOF 和 RDB：加载 AOF，因其记录更完整。
 2. 手动恢复
 	- 将备份的 RDB/AOF 文件放入配置目录，重启 Redis。
+
+# AOF 的 Rewrite 机制是怎么样的，会阻塞主线程吗？
+
+AOF 会记录修改数据的命令，但是命令可能会有多次重复执行，而多条命令可以**压缩成**一条命令，比如 一百万次 incr 可以改为一次 incr 一百万，从而大幅缩减 AOF 大小。所以 AOF Rewrite 的目标就是，根据 Redis 当前内存中的最终数据状态，重新生成一份更紧凑的 AOF。
+
+**在 Redis 7 之前**，对于 Redis Rewrite 流程是这样的：
+首先分出一个子进程，该子进程会根据当前内存中的数据生成新 AOF，新 AOF 会被写入到 AOF Rewrite Buffer 中；同时主进程会继续处理请求并向 AOF 中写。主进程的写会同时写入旧 AOF 和 AOF Rewrite Buffer。当子进程执行完毕后，会将 Rewrite 期间产生的新命令追加写到整理好的新 AOF 后，再原子替换掉旧的 AOF。
+
+**从 Redis 7 开始**，使用 Multi-Part AOF 替代传统的 Rewrite Buffer 方案。
+AOF 文件被拆为 Base AOF 和 Incremental AOF，Incremental AOF 又被分为一系列的 incr 单元。当进行 Rewrite 时，Child 对 Base AOF 进行 Rewrite，而 Parent 会新建一个 Incremental AOF，后续写操作直接写到里面；完成 Rewrite 后，实现原子替换。
+通过这种方式，避免了将 Rewrite 期间的追加写命令全部写入 Rewrite Buffer 内存中。
+
+对于阻塞问题，Rewrite 主要由子进程完成，因此不会长时间阻塞主线程，但 fork、COW 以及磁盘 I/O 竞争仍然可能造成短暂或间接的延迟。
+
+
+
