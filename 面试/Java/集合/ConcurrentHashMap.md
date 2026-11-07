@@ -1,5 +1,5 @@
 
-### ConcurrentHashMap 的实现
+# ConcurrentHashMap 是如何保证并发安全的？
 
 #### JDK1.8之前
 
@@ -17,7 +17,9 @@ JDK1.8 及之后，对 `ConcurrentHashMap` 进行了彻底重写。
 
 ![[面试/Java/集合/Inbox/Pasted image 20251127121213.png]]
 
-### 和HashTable区别
+
+
+# ConcurrentHashMap和HashTable区别
 
 #### ConcurrentHashMap
 
@@ -31,7 +33,7 @@ JDK1.8 及之后，对 `ConcurrentHashMap` 进行了彻底重写。
 
 底层采用 **数组 + 链表** 的形式实现。类中所有方法都使用 `synchronized` 关键字进行修饰，以确保线程安全，效率非常低下。当多个线程同时访问时，只能有一个线程进行操作，导致越来越多线程阻塞，效率越来越低。
 
-### key和value不能为null
+# ConcurrentHashMap 的key和value是否能为null？为什么？
 
 在 `ConcurrentHashMap` 中，无论 `key` 还是 `value` 都不能置为空，这是因为 `null` 作为 `key` 或者 `value` 时存在二义性，单线程下可以该容忍歧义，而多线程下无法容忍。
 
@@ -43,7 +45,7 @@ JDK1.8 及之后，对 `ConcurrentHashMap` 进行了彻底重写。
 
 如果确实需要在 `ConcurrentHashMap` 中使用 null，可以由使用者手动定义特殊的静态空对象 (如 `NULL = new Object()` ) 替代 null。
 
-### 复合操作原子性
+# 如何保证 ConcurrentHashMap 的复合操作原子性？
 
 `ConcurrentHashMap` 是线程安全的, 意味着多线程情况下同时进行读写操作时不会出现数据不一致情况, 也不会导致如 JDK1.7 及之前 HashMap 的多线程操作链表死循环问题. 但只能确保单个操作的安全, 不意味着复合操作也是原子性的. 在两个基本操作之间, 其他线程可能执行, 从而导致结果改变.
 
