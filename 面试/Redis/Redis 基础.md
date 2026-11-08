@@ -62,7 +62,7 @@ Redis 提供了 RDB 和 AOF 两种持久化策略, 用户可以根据自己的�
 
 # Redis单线程模型
 
-![[Pasted image 20261106105639.png]]
+![[面试/Redis/Inbox/Pasted image 20261108225750.png]]
 
 Redis 采用的是单线程 + IO 多路复用技术。这里单线程指的是 Redis 中读写操作和网络 IO 由一个线程来完成，但是其他操作由其他线程完成，如持久化操作。
 
