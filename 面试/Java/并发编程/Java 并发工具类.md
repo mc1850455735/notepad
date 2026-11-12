@@ -69,6 +69,41 @@ AQS 使用 int 类型的成员变量 state 表示同步状态，该变量使用 
 
 对 state 的操作通过 protected 类型的方法实现，且这些方法是使用 final 修饰的，无法在子类中被重写。
 
+# ReentrantLock
+
+### 概述
+- `ReentrantLock`, 可重入锁, 是一个可重入且独占式的锁, 实现了 Lock 接口. 其与 synchronized 关键词类似, 但是更灵活更强大, 增加了轮询, 超时, 中断, 公平锁, 非公平锁等高级功能.
+- `ReentrantLock` 中定义了 Sync 内部类, 该内部类中实现了大部分添加锁和释放锁的操作, 该类有 FairSync 公平锁和 NonfairSync 非公平锁两个子类; 可重入锁 `ReentrantLock` 的底层是由 [[CAS 与 AQS|CAS 与 AQS]] 实现的.
+- `ReentrantLock` 默认使用非公平锁, 也可以使用构造器参数指定使用公平锁.
+
+### 公平锁与非公平锁的区别
+- 公平锁: 锁被释放以后, 先申请的线程先得到锁. 为保证时间上的公平, 性能相对较差一些, 上下文切换更频繁.
+- 非公平锁: 锁被释放以后, 后申请的线程也有可能先得到锁; 得到锁的顺序是随机或者按线程优先级排序的. 由于不需要考虑时间, 性能更好, 但是可能存在线程一直无法获取到锁的情况出现.
+
+### 与synchronized区别
+- 两者都是**可重入锁**. 可重入锁又称递归锁, 指**线程**获得了一个锁后, 如果该锁还没有释放, 可以再次获取自己的内部锁. JDK 提供的所有 Lock 实现类都是可重入的.
+- synchronized 在 JVM 虚拟机的层次进行实现; 而 ReentrantLock 在 JDK API 的层次进行实现, 需要手动进行 `lock()` 和 `unlock()`, 并且可以查看源码
+- ReentrantLock 比 synchronized 增加了一些高级功能: 
+	1. 等待可中断: ReentrantLock 提供了一种中断等待锁的线程的机制, 通过提供的 `lockInterruptibly()` 方法实现该机制. 如果阻塞等待过程中其他线程中断了当前的线程, 会抛出线程中断异常 `InterruptedException`, 可以捕获该异常进行处理
+	2. 可实现公平锁: ReentrantLock 提供了公平锁的实现, 而 synchronized 关键字提供的锁只能是非公平锁.
+	3. 可实现选择性通知: synchronized 关键字通过 `wait()` / `notify()` 机制可以实现等待/通知机制, 而 ReentrantLock 的实现需要借助 Condition 接口与 `newCondition()` 方法
+	4. 支持超时: ReentrantLock 允许设定超时时间, 锁等待最长时间后仍未获得, 则直接失败, 不会一直等待
+
+### 补充
+
+#### 等待可中断
+Java 中的线程在执行 `interrupt` 中断操作时, 只有当特定情况下, 才会响应中断, 并抛出 `InterruptedException` 异常. 其中包括当线程通过执行 `lockInterruptibly()` 方法执行加锁情况. 当执行该方法时, 检查是否存在中断标志, 存在中断标志则抛出异常. 否则尝试加锁, 加锁成功继续向下执行, 否则阻塞等待; 如果等待过程中出现了对该线程的中断, 则抛出异常
+
+#### Condition 接口
+Condition 接口在JDK1.5加入, 可以实现多路通知功能, 即一个 Lock 中可以创建多个 Condition 实例. 线程对象可以注册到某个特定的 Contidion 实例中, 从而有选择性的进行线程通知. 对于 synchronized, 执行 notify() / notifyAll() 时, 只能通知随机一个等待线程或全部等待线程, 而通过 ReentrantLock 中持有的某个 Condition 的 signalAll() 方法, 可以有选择性的只唤醒注册在这个 Condition 中的线程.
+
+# ReentrantReadWriteLock
+
+
+
+# StampedLock
+
+
 # Semaphore
 
 #### 作用

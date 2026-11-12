@@ -1,5 +1,5 @@
 
-# go 语言中 map 的扩容机制是什么
+# go 语言中 map 的扩容机制是什么？
 
 **旧版 Map**
 在 1.23 之前，go 主要使用 Bucket + Overflow Bucket 的哈希表结构，使用渐进式迁移实现扩容。
