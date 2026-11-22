@@ -29,7 +29,6 @@ CDN 的常见应用场景有：
 
 CDN 可以让用户访问距离自己更近的服务器，主要依赖于 **DNS 智能调度**和**边缘节点选择策略**。
 
-
 对于 **DNS 智能调度**策略：
 
 ![](data:image/svg+xml;charset=utf-8,%3Csvg%20font-family%3D%22-apple-system-body%2C%20ui-sans-serif%2C%20-apple-system%2C%20system-ui%2C%20%26quot%3BSegoe%20UI%26quot%3B%2C%20Helvetica%2C%20%26quot%3BApple%20Color%20Emoji%26quot%3B%2C%20Arial%2C%20sans-serif%2C%20%26quot%3BSegoe%20UI%20Emoji%26quot%3B%2C%20%26quot%3BSegoe%20UI%20Symbol%26quot%3B%22%20font-weight%3D%22400%22%20data-d-component%3D%22svg%22%20fill%3D%22currentColor%22%20style%3D%22color%3Argb\(237%2C%20237%2C%20237\)%22%20viewBox%3D%220%200%20340%20305%22%20width%3D%22100%25%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20x%3D%2277%22%20y%3D%226%22%20width%3D%22186%22%20height%3D%2239%22%20rx%3D%227%22%20fill%3D%22%23DCEAFE%22%20stroke%3D%22%238CB6E8%22%2F%3E%3Ctext%20x%3D%22170%22%20y%3D%2222%22%20text-anchor%3D%22middle%22%20font-size%3D%2212%22%20fill%3D%22%23275889%22%20font-weight%3D%22600%22%3E%E9%80%92%E5%BD%92%20DNS%20%E8%A7%A3%E6%9E%90%E5%99%A8%3C%2Ftext%3E%3Ctext%20x%3D%22170%22%20y%3D%2235%22%20text-anchor%3D%22middle%22%20font-size%3D%2210%22%20fill%3D%22%23275889%22%3E%E6%9F%A5%E8%AF%A2%20CDN%20%E5%9F%9F%E5%90%8D%3C%2Ftext%3E%3Cpath%20d%3D%22M170%2045%20V65%22%20stroke%3D%22%238292A7%22%20stroke-width%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M166%2059%20L170%2065%20L174%2059%22%20stroke%3D%22%238292A7%22%20stroke-width%3D%221.6%22%20fill%3D%22none%22%2F%3E%3Crect%20x%3D%2269%22%20y%3D%2267%22%20width%3D%22202%22%20height%3D%2239%22%20rx%3D%227%22%20fill%3D%22%23FCE7D8%22%20stroke%3D%22%23E8A876%22%2F%3E%3Ctext%20x%3D%22170%22%20y%3D%2284%22%20text-anchor%3D%22middle%22%20font-size%3D%2212%22%20fill%3D%22%23845022%22%20font-weight%3D%22600%22%3ECDN%20%E6%9D%83%E5%A8%81%20DNS%3C%2Ftext%3E%3Ctext%20x%3D%22170%22%20y%3D%2297%22%20text-anchor%3D%22middle%22%20font-size%3D%2210%22%20fill%3D%22%23845022%22%3E%E6%8E%A5%E6%94%B6%20DNS%20%E6%9F%A5%E8%AF%A2%3C%2Ftext%3E%3Cpath%20d%3D%22M170%20106%20V124%22%20stroke%3D%22%238292A7%22%20stroke-width%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M166%20119%20L170%20125%20L174%20119%22%20stroke%3D%22%238292A7%22%20stroke-width%3D%221.6%22%20fill%3D%22none%22%2F%3E%3Crect%20x%3D%2248%22%20y%3D%22127%22%20width%3D%22244%22%20height%3D%2265%22%20rx%3D%227%22%20fill%3D%22%23DDF5E8%22%20stroke%3D%22%2372B99B%22%2F%3E%3Ctext%20x%3D%22170%22%20y%3D%22145%22%20text-anchor%3D%22middle%22%20font-size%3D%2213%22%20fill%3D%22%2322694B%22%20font-weight%3D%22600%22%3EGSLB%20%E6%99%BA%E8%83%BD%E8%B0%83%E5%BA%A6%3C%2Ftext%3E%3Ctext%20x%3D%22170%22%20y%3D%22161%22%20text-anchor%3D%22middle%22%20font-size%3D%2211%22%20fill%3D%22%2322694B%22%3E%E5%9C%B0%E5%9F%9F%20%2F%20%E8%BF%90%E8%90%A5%E5%95%86%20%2F%20%E5%BB%B6%E8%BF%9F%3C%2Ftext%3E%3Ctext%20x%3D%22170%22%20y%3D%22177%22%20text-anchor%3D%22middle%22%20font-size%3D%2211%22%20fill%3D%22%2322694B%22%3E%E8%8A%82%E7%82%B9%E5%81%A5%E5%BA%B7%20%2F%20%E8%B4%9F%E8%BD%BD%20%2F%20%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5%3C%2Ftext%3E%3Cpath%20d%3D%22M170%20192%20L55%20219%22%20stroke%3D%22%238AA99B%22%20stroke-width%3D%221.4%22%20fill%3D%22none%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%22221%22%20width%3D%22102%22%20height%3D%2242%22%20rx%3D%226%22%20fill%3D%22%23F0F1F3%22%20stroke%3D%22%23BDC5CC%22%2F%3E%3Ctext%20x%3D%2255%22%20y%3D%22238%22%20font-size%3D%2211%22%20text-anchor%3D%22middle%22%20fill%3D%22%23354656%22%3E%E5%8C%97%E4%BA%AC%E8%8A%82%E7%82%B9%3C%2Ftext%3E%3Ctext%20x%3D%2255%22%20y%3D%22252%22%20font-size%3D%2210%22%20text-anchor%3D%22middle%22%20fill%3D%22%23354656%22%3EIP%20A%3C%2Ftext%3E%3Cpath%20d%3D%22M170%20192%20L170%20219%22%20stroke%3D%22%238AA99B%22%20stroke-width%3D%221.4%22%20fill%3D%22none%22%2F%3E%3Crect%20x%3D%22119%22%20y%3D%22221%22%20width%3D%22102%22%20height%3D%2242%22%20rx%3D%226%22%20fill%3D%22%23F0F1F3%22%20stroke%3D%22%23BDC5CC%22%2F%3E%3Ctext%20x%3D%22170%22%20y%3D%22238%22%20font-size%3D%2211%22%20text-anchor%3D%22middle%22%20fill%3D%22%23354656%22%3E%E4%B8%8A%E6%B5%B7%E8%8A%82%E7%82%B9%3C%2Ftext%3E%3Ctext%20x%3D%22170%22%20y%3D%22252%22%20font-size%3D%2210%22%20text-anchor%3D%22middle%22%20fill%3D%22%23354656%22%3EIP%20B%3C%2Ftext%3E%3Cpath%20d%3D%22M170%20192%20L285%20219%22%20stroke%3D%22%238AA99B%22%20stroke-width%3D%221.4%22%20fill%3D%22none%22%2F%3E%3Crect%20x%3D%22234%22%20y%3D%22221%22%20width%3D%22102%22%20height%3D%2242%22%20rx%3D%226%22%20fill%3D%22%23F0F1F3%22%20stroke%3D%22%23BDC5CC%22%2F%3E%3Ctext%20x%3D%22285%22%20y%3D%22238%22%20font-size%3D%2211%22%20text-anchor%3D%22middle%22%20fill%3D%22%23354656%22%3E%E5%B9%BF%E5%B7%9E%E8%8A%82%E7%82%B9%3C%2Ftext%3E%3Ctext%20x%3D%22285%22%20y%3D%22252%22%20font-size%3D%2210%22%20text-anchor%3D%22middle%22%20fill%3D%22%23354656%22%3EIP%20C%3C%2Ftext%3E%3Ctext%20x%3D%22170%22%20y%3D%22287%22%20font-size%3D%2211%22%20fill%3D%22currentColor%22%20text-anchor%3D%22middle%22%3E%E4%BE%8B%E5%A6%82%E6%9C%80%E7%BB%88%E9%80%89%E4%B8%AD%E5%B9%BF%E5%B7%9E%E8%8A%82%E7%82%B9%20IP%20C%3C%2Ftext%3E%3Ctext%20x%3D%22170%22%20y%3D%22300%22%20font-size%3D%2210%22%20fill%3D%22%237C8792%22%20text-anchor%3D%22middle%22%3E%E8%B0%83%E5%BA%A6%E6%95%B0%E6%8D%AE%E7%94%B1%E5%90%8E%E5%8F%B0%E7%9B%91%E6%8E%A7%E5%92%8C%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%3C%2Ftext%3E%3C%2Fsvg%3E)
@@ -66,14 +65,37 @@ DNS 智能调度策略主要在 DNS 层完成调度，每个节点使用不同�
 
 常见的 CDN 缓存更新解决方法有三种，分别是 TTL 过期、主动刷新、URL 版本化。
 
-首先是 TTL 过期。为缓存设置有效期，到期后再根据缓存规则检查或获取新内容。
+首先是 **TTL 过期更新**。
+当用户通过 CDN 节点第一次访问资源时，CDN 节点中没有缓存，于是向源站请求，源站返回相应资源，并附上一系列资源标识，如：
+- max-age：资源在多次时间内可以被认为是新鲜的；
+- ETag：资源的版本标识，可以用于验证缓存是否过期；
+- Content-Type：资源的类型。
+除了 ETag 外，还有一些其他的标识可以用来实现条件验证，如 `Last-Modified` 或 `If-Modified-Since`。
 
-其次是主动刷新。图片修改后，调用 CDN 服务商的刷新接口，使对应的缓存失效。
+用户第一次请求资源时，CDN 请求并缓存图片到节点中；在有效期内，当其他用户重复请求相同资源时，CDN 节点直接从缓存中返回。
 
-最后是 URL 版本化。更新图片时，修改对应 URL，使 CDN 将其视为一个新资源。
+当缓存 TTL 过期时，资源被视为过期状态。当新请求到达时，CDN 触发回源验证，通过 ETag 标识确定资源版本是否发生变化，如果没有变化，CDN 可以使用之前的缓存，只需要更新缓存有效期；如果图片变化，源站会发送相关资源给 CDN 节点，CDN 使用新资源替代原本的缓存即可。
 
+值得注意的是，TTL 的过期并不代表 CDN 会立即删除缓存或立即主动向源站获取最新资源，而是在过期资源被再次请求时，才会触发过期流程。
 
+其次是**主动刷新**。
+假设源站处修改了对应的资源，此时 URL 虽然没有发生变化，但是对应的图片内容发生了变化。虽然 CDN 缓存过期后，重新请求就可以发现资源的变化，但是在较长的 TTL 中持续等待直到缓存过期显然不合适。
 
+针对这种场景，CDN 服务商提供了缓存刷新接口：
+- 管理员上传新的商品图片；
+- 后端将新图片写入到对应的 OSS；
+- 写入成功后，后端调用 CDN 提供的缓存刷新 API；
+- CDN 服务商向相关节点发送缓存刷新操作；
+- 删除节点中对应的旧缓存或将其标记为失效；
+- 用户再次请求对应资源，CDN 节点从源站获取最新图片。
+缓存刷新并不是将最新的图片直接写入到 CDN 边缘节点，而是修改对应记录标识或删除对应记录，直到用户下一次访问才会重新回源。
+
+最后是 **URL 版本化**。
+对于一个资源，当资源内容发生变化时，直接更新该资源对应的 URL 地址，由于 URL 不同，CDN 会将其视为不同的缓存对象。因此，原本的旧资源可以存在于 CDN 中，新资源首次访问时直接出发 CDN 回源机制获取最新资源，前端或后端只需要更新图片 URL 即可。
+
+通常，前端中会将文件的哈希值作为文件的版本号，每次文件内容变化时，文件名也会发生变化。版本化的优点是不需要等待旧缓存失效，同时可以更方便的管理不同的资源版本；同时，可以避免浏览器缓存旧资源，导致 CDN 的资源更新无法第一时间被用户获取到。
+
+同时还有一种 **Stale-While-Revalidate** 的机制。对于某些 CDN 服务商提供了这个功能，允许 CDN 资源过期后一定时间内，收到用户请求时直接返回旧资源，同时向源站请求检查或更新资源，以降低用户等待回源的延迟。这种优化方式对于高频访问的资源优化更明显。
 
 # 如果用户访问 CDN 时，DNS 解析已经完成，但对应 CDN 节点突然宕机，会发生什么？
 
