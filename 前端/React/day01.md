@@ -1,6 +1,9 @@
 # React 基本程序
 
 React 使用 default function App() 创建默认组件，并通过 export 关键字导出。
+```jsx
+export default function App() {} 
+```
 
 JSX 中使用 `{ }` 嵌入表达式，类似 Vue 中的 `{{ }}`。
 
@@ -58,3 +61,7 @@ React 中通过 value 和 onChange 两个属性，对一个状态变量进行绑
 	placeholder="请输入任务"
 />
 ```
+
+React 在渲染 JSX 内容时，不会显示 `false`、`null` 和 `undefined`。
+
+
