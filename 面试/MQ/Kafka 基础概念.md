@@ -28,3 +28,8 @@ Group Coordinator 负责协调消费者组成员关系和 Rebalance 过程。
 首先，传统 Eager Rebalance 时通常会先撤销消费者所有原分区分配，再重新分配，这个过程可能会导致**消息消费暂停**；而 Cooperative Rebalance 支持增量调整，不必撤销所有分区，减少了影响。
 Consumer 消费时，可能会在消费成功，但是还未提交 Offset 时发生 Rebalance，导致原有的 Offset 位置的消息被另一个 Consumer **重复执行**，因此需要通过业务幂等性消除这种影响。
 如果消费者不断加入退出，Kafka 就需要不断调整分配，影响消费者正常工作。
+
+# Kafka 如何保证消息有序？
+
+
+

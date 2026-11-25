@@ -33,9 +33,9 @@ InnoDB引擎为每行数据添加了3个隐藏字段:
 
 ![[面试/MySQL/Inbox/Pasted image 20251129094439.jpg]]
 
-### undo-log
+### undo log
 
-undo-log 主要用于回滚过程中的数据恢复以及 `MVCC` 中的版本管理。如果该记录当前版本对该事务不可用，则可以通过 `undo-log` 获取之前的版本数据，实现非锁定读。
+undo log 主要用于回滚过程中的数据恢复以及 `MVCC` 中的版本管理。如果该记录当前版本对该事务不可用，则可以通过 `undo-log` 获取之前的版本数据，实现非锁定读。
 
 undo log 分为两种，分别是 `insert undo log` 和 `update undo log`。
 - 对于 `insert` 操作，该记录只对事务本身可见，对其他事务不可见，所以可以在事务提交后直接删除 `undo log`；
@@ -58,7 +58,7 @@ undo log 分为两种，分别是 `insert undo log` 和 `update undo log`。
 
 ![[面试/MySQL/Inbox/Pasted image 20251129103832.jpg]]
 
-# RC与RR隔离级别
+# RC 与 RR 隔离级别
 - RR(Repeatable Read) 和 RC(Read Committed) 是 InnoDB 的两个事务隔离级别, 默认情况下, MySQL 中 InnoDB 引擎使用 `RR` 隔离级别,, 通过 MVCC (非锁定一致性读) 实现事务隔离. 
 - RR 和 RC 生成 ReadView 的时机不同. 对于 RC, 每次进行 select 操作时都会生成一个 ReadView, 而对于 RR, 只有事务内第一次 select 会生成 ReadView, 随后的 select 会使用第一次生成的 ReadView
 
@@ -67,10 +67,13 @@ undo log 分为两种，分别是 `insert undo log` 和 `update undo log`。
 - 在 RC 中, 每次 select 都会产生一个 ReadView, 从而导致在事务内部如果有其他事务修改数据并提交, 则事务内部两次 select 的结果会产生差距, 从而导致不可重复读现象的出现
 - 在 RR 中, 只在当前事务的第一次 select 时产生 ReadView, 后续过程中所有的 select 操作全都使用同一个 ReadView, 使得即使其他事务对表内字段产生了修改, 对当前事务来说都是不可见的, 从而实现可重复读.
 
-# MVCC+临键锁防止幻读
-- InnoDB 引擎在 RR 级别下通过 MVCC 和 next-key lock 解决幻读问题
-- 当执行普通 select 时, MVCC 会通过快照读的方式读取数据. RR 隔离级别下只会记录第一次 select 查询时的 ReadView, 在 ReadView 生成后创建和修改的记录, 其版本号对当前事务的查询是不可见的. 从而实现了可重复读以及防止快照读下的幻读.
-- 当执行当前读时, 读取的都是最新数据, 如果有其他事务在此过程中插入记录, 且刚好在当前读的查询范围内, 就会产生幻读现象. 解决方法是在查询时, 不光锁定查询到的记录, 同时锁定他们之间的间隙, 禁止其他事务在间隙内插入数据, 自然就不再会出现幻读.
+# MVCC 配合临键锁防止幻读
+
+InnoDB 引擎在 RR 级别下通过 MVCC 和 next-key lock 解决幻读问题。
+
+当执行**普通 select** 时，MVCC 会通过**快照读**的方式读取数据。RR 隔离级别下只会记录第一次 select 查询时的 ReadView，在 ReadView 生成后创建和修改的记录，其版本号对当前事务的查询是不可见的。从而在快照读条件下实现了可重复读并防止幻读。
+
+当执行**当前读**时，读取的都是最新数据，如果有其他事务在此过程中插入记录，且刚好在当前读的查询范围内，就会产生**幻读现象**。解决方法是在查询时，不光锁定查询到的记录，同时锁定他们之间的间隙，禁止其他事务在间隙内插入数据，自然就不再会出现幻读。
 
 
 

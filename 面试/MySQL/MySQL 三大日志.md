@@ -1,10 +1,11 @@
-# redo log
+# Redo Log
 
-redo log 是 InnoDB 独属的日志, 使得 MySQL 拥有了**崩溃恢复**的能力, 当 MySQL 因意外宕机等, 通过 redo log 可以恢复数据, 保证数据的持久性与完整性。
+Redo Log 是 InnoDB 独属的日志，使得 MySQL 拥有了**崩溃恢复**的能力。
+当 MySQL 因意外宕机等，通过 redo log 可以恢复数据，保证数据的持久性与完整性。
 
 ## Redo Log 刷盘时机
 
-MySQL 中，数据在磁盘中的存取是以页为单位，会从硬盘中加载一页的数据，并将其放入 Buffer Pool 中，后续如果再有数据的查询请求，会优先从 Buffer Pool 中查询数据，数据不存在再去硬盘中加载，从而减少硬盘 IO 开销；更新时，同样先在 Buffer Pool 中进行数据更新，并将修改相关数据存储到 redo log buffer 中，接着刷盘到 redo log 中。
+MySQL 中，数据在磁盘中的存取是以页为单位，会从硬盘中加载一页的数据，并将其放入 Buffer Pool 中。后续如果再有数据的查询请求，会优先从 Buffer Pool 中查询数据，数据不存在再去硬盘中加载，从而减少硬盘 IO 开销；更新时，同样先在 Buffer Pool 中进行数据更新，并将修改相关数据存储到 redo log buffer 中，接着刷盘到 redo log 中。
 
 理想情况下，事务提交后就会立即将修改进行刷盘操作，但是实际上是根据刷盘策略进行的。在 InnoDB 中，将 redo log buffer 中的数据刷盘到 redo log 中共有6种不同的时机：
 1. 事务提交时：当事务提交时，buffer 中的数据会被刷新到磁盘中。该刷盘时机可以通过 `innodb_flush_log_at_trx` 参数控制；

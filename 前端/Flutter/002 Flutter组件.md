@@ -292,13 +292,13 @@ Wrap 是流式布局组件，当子组件在主轴方向上排列不下时，会
 
 Wrap 组件更像是 Flex 组件加了换行特性。当子组件内容是根据数据动态生成的时，使用 Wrap 可以保证布局始终适配。
 
-| 属性         | 常用值                          | 作用说明                        |
-| ------------ | ------------------------------- | ------------------------------- |
-| direction    | Axis.horizontal / Axis.vertical | 设置主轴方向，即排列方向        |
-| spacing      | 数值                            | 主轴方向上，子组件之间的间距    |
-| runSpacing   | 数值                            | 交叉轴方向上，行 / 列之间的间距 |
+| 属性           | 常用值                             | 作用说明              |
+| ------------ | ------------------------------- | ----------------- |
+| direction    | Axis.horizontal / Axis.vertical | 设置主轴方向，即排列方向      |
+| spacing      | 数值                              | 主轴方向上，子组件之间的间距    |
+| runSpacing   | 数值                              | 交叉轴方向上，行 / 列之间的间距 |
 | alignment    | WrapAlignment                   | 子组件在主轴方向上的对齐方式    |
-| runAlignment | WrapAlignment                   | 交叉轴方向上的对齐方式          |
+| runAlignment | WrapAlignment                   | 交叉轴方向上的对齐方式       |
 
 ```dart
 Wrap(
@@ -309,8 +309,6 @@ Wrap(
     children: getList(),
 ),
 ```
-
-
 
 当需要批量生成组件时，可以利用函数，同时在函数中使用 `List.generate(nums, function)` 方法进行批量生产。
 
@@ -388,7 +386,7 @@ Stack(
 ),
 ```
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260322171736783.png" alt="image-20260322171736783" style="zoom:50%;" />
+<img src="image-20260322171736783.png" alt="image-20260322171736783" style="zoom:50%;" />
 
 # 功能组件
 
@@ -423,7 +421,7 @@ Text(
 ),
 ```
 
-![image-20260322213542917](D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260322213542917.png)
+![image-20260322213542917](image-20260322213542917.png)
 
 ### 行数控制
 
@@ -438,7 +436,7 @@ Text(
 ),
 ```
 
-![image-20260322213433230](D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260322213433230.png)
+![image-20260322213433230](Inbox/image-20260322213433230.png)
 
 ### TextSpan
 
@@ -467,7 +465,7 @@ Text.rich(
 ),
 ```
 
-![image-20260322215137699](D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260322215137699.png)
+![image-20260322215137699](Inbox/image-20260322215137699.png)
 
 ## Image
 
@@ -547,7 +545,7 @@ Container(
 ),
 ```
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260328210850546.png" alt="image-20260328210850546" style="zoom:33%;" />
+<img src="Inbox/image-20260328210850546.png" alt="image-20260328210850546" style="zoom:33%;" />
 
 ## TextField
 
@@ -626,7 +624,7 @@ Container(
 
 效果如下：
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260330215645631.png" alt="image-20260330215645631" width=300px />
+<img src="Inbox/image-20260330215645631.png" alt="image-20260330215645631" width=300px />
 
 ### 功能实现
 
@@ -664,7 +662,7 @@ class _MainPageState extends State<MainPage> {
 }
 ```
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260330221918383.png" alt="image-20260330221918383" width=300px />![image-20260330221940759](D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260330221940759.png)
+<img src="Inbox/image-20260330221918383.png" alt="image-20260330221918383" width=300px />![image-20260330221940759](Inbox/image-20260330221940759.png)
 
 **onChanged 和 onSubmit**
 
@@ -681,7 +679,7 @@ TextField(
 ),
 ```
 
-![image-20260330222457925](D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260330222457925.png)
+![image-20260330222457925](Inbox/image-20260330222457925.png)
 
 # 滚动组件
 
@@ -719,11 +717,11 @@ Column(
 
 生成完后效果如下，可以看到提示 "Buttom overflowed by 10326 pixels"，即内容超出页面 (因内容无法滚动查看)：
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260331165853203.png" alt="image-20260331165853203" width=300px />
+<img src="Inbox/image-20260331165853203.png" alt="image-20260331165853203" width=300px />
 
 通过 SingleChildScrollView，可以使单个子组件具备滚动功能。同时可以设置 padding 内边距属性。
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260409164727582.png" alt="image-20260409164727582" width=300px />
+<img src="Inbox/image-20260409164727582.png" alt="image-20260409164727582" width=300px />
 
 ### 滚动控制
 
@@ -766,7 +764,7 @@ ListView(
 ),
 ```
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260328111052112.png" alt="image-20260328111052112" style="zoom:50%;" />
+<img src="Inbox/image-20260328111052112.png" alt="image-20260328111052112" style="zoom:50%;" />
 
 ### ListView.builder
 
@@ -805,7 +803,7 @@ ListView.separated(
 ),
 ```
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260328204414246.png" alt="image-20260328204414246" style="zoom:50%;" />
+<img src="Inbox/image-20260328204414246.png" alt="image-20260328204414246" style="zoom:50%;" />
 
 ## GridView
 
@@ -848,7 +846,7 @@ GridView.count(
 ),
 ```
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260327201259945.png" alt="image-20260327201259945" width=300px /><img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260327201242808.png" alt="image-20260327201242808" width=300px/>
+<img src="Inbox/image-20260327201259945.png" alt="image-20260327201259945" width=300px /><img src="Inbox/image-20260327201242808.png" alt="image-20260327201242808" width=300px/>
 
 ### GridView.extent()
 
@@ -875,7 +873,7 @@ GridView.extent(
 ),
 ```
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260327203232620.png" alt="image-20260327203232620" width=300px />
+<img src="Inbox/image-20260327203232620.png" alt="image-20260327203232620" width=300px />
 
 ### GridView.builder()
 
@@ -907,5 +905,5 @@ GridView.builder(
 ),
 ```
 
-<img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260327204512306.png" alt="image-20260327204512306" style="zoom:50%;" /><img src="D:\Majinliang\Documents\笔记\前端\Flutter\Inbox\image-20260327204849836.png" alt="image-20260327204849836" style="zoom:50%;" />
+<img src="./Inbox/image-20260327204512306.png" alt="image-20260327204512306" style="zoom:50%;" /><img src="Inbox/image-20260327204849836.png" alt="image-20260327204849836" style="zoom:50%;" />
 
